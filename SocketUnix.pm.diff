@@ -1,0 +1,19 @@
+8c8
+< 
+---
+> use LWP::Debug;
+15d14
+< 
+18a18
+>             Host => 'localhost',
+29d28
+< 
+48,50c47,49
+<       my $path = $url->host . '/' . $url->path_query;
+<       my $fullpath = "/";
+< 
+---
+>     use Data::Dumper::Concise;
+>       my $path = $url->path;#$url->host . '/' . $url->path_query;
+>       my $fullpath = "/RPC2";
+

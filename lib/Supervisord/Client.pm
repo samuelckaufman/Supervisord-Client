@@ -2,7 +2,6 @@ package Supervisord::Client;
 use strict;
 use warnings;
 use LWP::Protocol::http::SocketUnixAlt;
-use Data::Dumper::Concise;
 use RPC::XML::Client;
 use Moo::Lax;
 use Carp;

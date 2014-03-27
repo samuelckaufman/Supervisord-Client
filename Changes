@@ -3,6 +3,8 @@ Revision history for perl module SocialFlow::Deploy ( see https://metacpan.org/m
 
 {{$NEXT}}
 
+- inet_http_server support added.
+
 0.1_01    2014-03-27 02:38:51 Europe/London
 
 - First release

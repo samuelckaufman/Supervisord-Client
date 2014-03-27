@@ -74,9 +74,9 @@ Supervisord::Client - a perl client for Supervisord's XMLRPC.
     my $client = Supervisord::Client->new( serverurl => "unix:///tmp/socky.sock" );
     #or
     my $client = Supervisord::Client->new( path_to_supervisor_config => "/etc/supervisor/supervisor.conf" );
-    warn $_->{description} for(@{ client->getAllProcessInfo });
+    warn $_->{description} for(@{ $client->getAllProcessInfo });
     #or
-    warn $_->{description} for(@{ client->send_rpc_request("supervisor.getAllProcessInfo") });
+    warn $_->{description} for(@{ $client->send_rpc_request("supervisor.getAllProcessInfo") });
 
 =head1 DESCRIPTION
 

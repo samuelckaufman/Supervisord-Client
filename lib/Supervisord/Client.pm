@@ -7,7 +7,6 @@ use Moo::Lax;
 use Carp;
 use Safe::Isa;
 use Config::INI::Reader;
-use LWP::UserAgent;
 use URI;
 
 LWP::Protocol::implementor(
@@ -22,17 +21,24 @@ has serverurl => (
     is       => 'ro',
     required => 0,
 );
-has ua => (
-    is => 'ro',
-    lazy_build => 1,
+
+has rpc => (
+    is      => 'lazy',
+    handles => { ua => 'useragent' },
 );
-has rpc        => ( is => 'lazy' );
 has _serverurl => ( is => 'lazy' );
 
-sub _build_ua {
-    my $self = shift;
-    LWP::UserAgent->new;
-}
+has username => (
+    is => 'ro',
+    required => 0,
+);
+
+has password => (
+    is => 'ro',
+    required => 0,
+);
+
+
 sub _build__serverurl {
     my $self = shift;
     return $self->serverurl if $self->serverurl;
@@ -54,7 +60,12 @@ sub _build_rpc {
     } else {
         $uri->path_segments( $uri->path_segments, "RPC2" );
     }
-    my $cli = RPC::XML::Client->new( $uri, useragent => $self->ua );
+    my $cli = RPC::XML::Client->new( $uri );
+    my $ua = $cli->useragent;
+    if( $self->username ) {
+        $ua->credentials( $uri->host_port, 'default', $self->username, $self->password );
+    }
+    return $cli;
 }
 
 sub BUILD {
@@ -113,6 +124,10 @@ Constructor, provided by Moo.
 
 Access to the RPC::XML::Client object.
 
+=item ua
+
+Access to the LWP::UserAgent object from the RPC::XML::Client
+
 =head2 send_rpc_request( remote_method, @params )
 
 
@@ -135,9 +150,6 @@ optional - ex: /tmp/super.sock
     optional - in supervisor format, ex: unix:///tmp.super.sock | http://myserver.local:8080
 
 
-=item ua
-
-    optional - A LWP::UserAgent compatible object.
 
 =back
 

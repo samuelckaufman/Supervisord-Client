@@ -82,7 +82,7 @@ Supervisord::Client - a perl client for Supervisord's XMLRPC.
 
 This module is for people who are using supervisord (  L<http://supervisord.org/> ) to manage their daemons,
 and are using the unix socket form of the RPC ( as opposed to http server ).
-This module will work with either, but really you're not getting much vs RPC::XML::Client for the http version;
+This module will work with either, but really you're not getting much vs L<RPC::XML::Client> for the http version;
 the http over Unix socket part is where this module comes in handy.
 See L<http://supervisord.org/api.html> for the API docs.
 

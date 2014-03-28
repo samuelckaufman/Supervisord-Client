@@ -3,6 +3,8 @@ Revision history for perl module SocialFlow::Deploy ( see https://metacpan.org/m
 
 {{$NEXT}}
 
+0.21      2014-03-28 18:38:37 Europe/London
+
     - had left out URI:: subclass from last version
 
 0.2       2014-03-28 17:03:03 Europe/London

@@ -3,6 +3,8 @@ Revision history for perl module SocialFlow::Deploy ( see https://metacpan.org/m
 
 {{$NEXT}}
 
+0.2       2014-03-28 17:03:03 Europe/London
+
     - pod fixes, better test
 
 0.1_02    2014-03-27 21:58:07 Europe/London

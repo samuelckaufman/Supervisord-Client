@@ -41,4 +41,6 @@ close( $tmp_fh );
 
 ok my $client =
   Supervisord::Client->new( path_to_supervisor_config => $tmp_fh->filename ), "spawned the client";
+ok $client->rpc, 'created the rpc';
+is $client->serverurl, "unix://$sock_file_path", "correctly grabbed the socket path";
 done_testing;

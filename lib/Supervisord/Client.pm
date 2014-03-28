@@ -18,15 +18,13 @@ has path_to_supervisor_config => (
 );
 
 has serverurl => (
-    is       => 'ro',
-    required => 0,
+    is       => 'lazy',
 );
 
 has rpc => (
     is      => 'lazy',
     handles => { ua => 'useragent' },
 );
-has _serverurl => ( is => 'lazy' );
 
 has username => (
     is => 'ro',
@@ -39,9 +37,8 @@ has password => (
 );
 
 
-sub _build__serverurl {
+sub _build_serverurl {
     my $self = shift;
-    return $self->serverurl if $self->serverurl;
     my $hash =
       Config::INI::Reader->read_file( $self->path_to_supervisor_config );
     return $hash->{supervisorctl}{serverurl}
@@ -51,7 +48,7 @@ sub _build__serverurl {
 
 sub _build_rpc {
     my $self = shift;
-    my $url  = $self->_serverurl;
+    my $url  = $self->serverurl;
     my $uri = URI->new( $url );
     if( lc($uri->scheme) eq 'unix' ) {
         my $socket_uri = URI->new("supervisorsocketunix:");
@@ -124,7 +121,7 @@ Constructor, provided by Moo.
 
 Access to the RPC::XML::Client object.
 
-=item ua
+=head2 ua
 
 Access to the LWP::UserAgent object from the RPC::XML::Client
 

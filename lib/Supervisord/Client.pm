@@ -2,7 +2,7 @@ package Supervisord::Client;
 use strict;
 use warnings;
 use LWP::Protocol::http::SocketUnixAlt;
-use RPC::XML::Client;
+use RPC::XML::Client qw[ $RPC::XML::ERROR ];
 use Moo::Lax;
 use Carp;
 use Safe::Isa;

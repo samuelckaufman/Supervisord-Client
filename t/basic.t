@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 use Test::More;
+plan tests => 4;
 use Supervisord::Client;
 use FindBin;
 use File::Spec;
 use File::Temp;
-
 
 my $sock_file_path = File::Temp::tmpnam;
 my $tmp_fh = File::Temp->new;

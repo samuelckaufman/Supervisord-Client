@@ -58,7 +58,8 @@ sub _build_rpc {
     } else {
         $uri->path_segments( $uri->path_segments, "RPC2" );
     }
-    my $cli = RPC::XML::Client->new( $uri );
+    my $cli =
+      RPC::XML::Client->new( $uri, error_handler => sub { confess @_ } );
     my $ua = $cli->useragent;
     if( $self->username ) {
         $ua->credentials( $uri->host_port, 'default', $self->username, $self->password );

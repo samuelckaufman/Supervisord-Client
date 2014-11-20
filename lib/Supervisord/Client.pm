@@ -52,8 +52,7 @@ sub _build_rpc {
     my $uri = URI->new( $url );
     if( lc($uri->scheme) eq 'unix' ) {
         my $socket_uri = URI->new("supervisorsocketunix:");
-        my @old_segments = grep { $_ } $uri->path_segments;
-        $socket_uri->path_segments( @old_segments, "", "RPC2" );
+        $socket_uri->path_segments( $uri->path_segments, "", "RPC2" );
         $uri = $socket_uri;
     } else {
         $uri->path_segments( $uri->path_segments, "RPC2" );

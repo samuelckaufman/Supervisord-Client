@@ -3,6 +3,8 @@ Revision history for perl module SocialFlow::Deploy ( see https://metacpan.org/m
 
 {{$NEXT}}
 
+    - fix for changes to pathing upstream in https://metacpan.org/pod/LWP::Protocol::http::SocketUnixAlt
+
 0.21      2014-03-28 18:38:37 Europe/London
 
     - had left out URI:: subclass from last version

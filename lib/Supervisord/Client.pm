@@ -81,12 +81,15 @@ sub AUTOLOAD {
     my ( $self, @args ) = @_;
     $self->send_rpc_request("supervisor.$remote_method", @args );
 }
+
 sub send_rpc_request {
     my( $self, @params ) = @_;
     my $ret = $self->rpc->send_request( @params );
     return $ret->value if $ret->$_can("value");
     return $ret;
 }
+
+sub DESTROY {}
 
 1;
 
